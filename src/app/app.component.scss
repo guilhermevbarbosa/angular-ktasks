@@ -1,0 +1,22 @@
+@import "../variables.scss";
+
+mat-toolbar {
+  min-height: 64px;
+  max-height: 64px;
+  background: $gradient;
+  color: $white-k;
+
+  h1 {
+    font-weight: 200;
+  }
+}
+
+mat-sidenav {
+  width: 15%;
+}
+
+mat-sidenav-content {
+  div {
+    height: calc(100vh - 64px);
+  }
+}
