@@ -7,11 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialComponentsModule } from './material-components/material-components.module';
 import { AboutComponent } from './views/about/about.component';
+import { TaskBoardComponent } from './views/task-board/task-board.component';
+import { BoardsComponent } from './views/boards/boards.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AboutComponent
+    AboutComponent,
+    TaskBoardComponent,
+    BoardsComponent
   ],
   imports: [
     BrowserModule,
