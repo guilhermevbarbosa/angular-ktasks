@@ -1,6 +1,84 @@
 <div class="content pt20">
   <h1>Quadro de tarefas</h1>
 
+  <mat-card class="card-new card-none" id="formCard">
+    <mat-card-header>
+      <mat-card-title>Nova tarefa</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>
+        <mat-form-field appearance="outline">
+          <!-- Placeholder -->
+          <mat-label>Nome</mat-label>
+          <!-- Placeholder -->
+
+          <!-- Input -->
+          <input [(ngModel)]="taskName" matInput #name maxlength="100" />
+          <!-- Input -->
+
+          <!-- Limpa campo -->
+          <button
+            mat-button
+            *ngIf="taskName"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="taskName = ''"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+          <!-- Limpa campo -->
+
+          <!-- Contador de caracteres -->
+          <mat-hint align="end">{{ name.value.length }} / 100</mat-hint>
+          <!-- Contador de caracteres -->
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline">
+          <!-- Placeholder -->
+          <mat-label>Descrição</mat-label>
+          <!-- Placeholder -->
+
+          <!-- Input -->
+          <input
+            [(ngModel)]="taskDescription"
+            matInput
+            #description
+            maxlength="100"
+          />
+          <!-- Input -->
+
+          <!-- Limpa campo -->
+          <button
+            mat-button
+            *ngIf="taskDescription"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="taskDescription = ''"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+          <!-- Limpa campo -->
+
+          <!-- Contador de caracteres -->
+          <mat-hint align="end">{{ description.value.length }} / 100</mat-hint>
+          <!-- Contador de caracteres -->
+        </mat-form-field>
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-stroked-button color="primary" mat-button>Salvar</button>
+      <button mat-stroked-button color="warn" mat-button (click)="formView()">
+        Cancelar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
   <app-boards></app-boards>
 
   <button
@@ -9,6 +87,7 @@
     class="add-fab"
     matTooltip="Adicionar tarefa"
     matTooltipPosition="left"
+    (click)="formView()"
   >
     <mat-icon>add</mat-icon>
   </button>

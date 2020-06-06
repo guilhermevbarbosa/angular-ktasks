@@ -7,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskBoardComponent implements OnInit {
 
+  taskName: string;
+  taskDescription: string;
+
   constructor() { }
 
-  value: string;
-
   ngOnInit(): void {
+  }
+
+  formView() {
+    document.getElementById('formCard').classList.toggle('card-none');
   }
 
 }
