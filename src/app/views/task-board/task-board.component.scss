@@ -1,8 +1,17 @@
-.content {
-  padding-top: 20px;
+@import "../../../variables.scss";
 
+.content {
   h1 {
     text-align: center;
     margin-bottom: 40px;
+  }
+
+  .add-fab {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 50px;
+    margin-right: 50px;
+    background: $gradient;
   }
 }
