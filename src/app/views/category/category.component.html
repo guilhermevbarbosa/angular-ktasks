@@ -60,7 +60,7 @@
   <!-- Form -->
 
   <!-- Table -->
-  <div>
+  <div class="table-space">
     <mat-table [dataSource]="categories">
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef>
@@ -99,7 +99,7 @@
     mat-fab
     aria-label="Nova tarefa"
     class="add-fab"
-    matTooltip="Adicionar tarefa"
+    matTooltip="Adicionar categoria"
     matTooltipPosition="left"
     (click)="formView()"
   >
