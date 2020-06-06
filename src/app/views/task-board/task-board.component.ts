@@ -9,6 +9,8 @@ export class TaskBoardComponent implements OnInit {
 
   constructor() { }
 
+  value: string;
+
   ngOnInit(): void {
   }
 
