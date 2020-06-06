@@ -1,6 +1,7 @@
 <div class="content pt20">
   <h1>Quadro de categorias</h1>
 
+  <!-- Form -->
   <mat-card class="card-new card-none" id="formCard">
     <mat-card-header>
       <mat-card-title>Nova categoria</mat-card-title>
@@ -56,7 +57,9 @@
       </button>
     </mat-card-actions>
   </mat-card>
+  <!-- Form -->
 
+  <!-- Table -->
   <div>
     <mat-table [dataSource]="categories">
       <ng-container matColumnDef="name">
@@ -89,7 +92,9 @@
       <mat-row *matRowDef="let row; columns: columnsToShow"></mat-row>
     </mat-table>
   </div>
+  <!-- Table -->
 
+  <!-- Botão de adicionar -->
   <button
     mat-fab
     aria-label="Nova tarefa"
@@ -100,4 +105,5 @@
   >
     <mat-icon>add</mat-icon>
   </button>
+  <!-- Botão de adicionar -->
 </div>
