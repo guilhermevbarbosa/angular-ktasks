@@ -11,8 +11,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-
 import { MatTableModule } from '@angular/material/table';
+
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   exports: [
@@ -26,7 +27,8 @@ import { MatTableModule } from '@angular/material/table';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatTableModule
+    MatTableModule,
+    DragDropModule
   ]
 })
 export class MaterialComponentsModule { }
