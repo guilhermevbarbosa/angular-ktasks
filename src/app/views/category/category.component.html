@@ -1,1 +1,103 @@
-<p>category works!</p>
+<div class="content pt20">
+  <h1>Quadro de categorias</h1>
+
+  <mat-card class="card-new card-none" id="formCard">
+    <mat-card-header>
+      <mat-card-title>Nova categoria</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content *ngIf="selectedCategory">
+      <p>
+        <mat-form-field appearance="outline">
+          <!-- Placeholder -->
+          <mat-label>Nome</mat-label>
+          <!-- Placeholder -->
+
+          <!-- Input -->
+          <input
+            [(ngModel)]="selectedCategory.name"
+            matInput
+            #name
+            maxlength="100"
+          />
+          <!-- Input -->
+
+          <!-- Limpa campo -->
+          <button
+            mat-button
+            *ngIf="selectedCategory.name"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="selectedCategory.name = ''"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+          <!-- Limpa campo -->
+
+          <!-- Contador de caracteres -->
+          <mat-hint align="end">{{ name.value.length }} / 100</mat-hint>
+          <!-- Contador de caracteres -->
+        </mat-form-field>
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-stroked-button color="primary" (click)="save()" mat-button>
+        Salvar
+      </button>
+      <button
+        mat-stroked-button
+        color="warn"
+        mat-button
+        (click)="cleanSelectedCategory()"
+      >
+        Cancelar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <div>
+    <mat-table [dataSource]="categories">
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>
+          Nome
+        </mat-header-cell>
+
+        <mat-cell *matCellDef="let category">
+          {{ category.name }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <mat-header-cell *matHeaderCellDef>
+          Ações
+        </mat-header-cell>
+
+        <mat-cell class="btns-actions" *matCellDef="let category">
+          <button mat-button color="warn">
+            <mat-icon (click)="remove(category._id)">delete</mat-icon>
+          </button>
+
+          <button mat-button color="accent">
+            <mat-icon (click)="selectCategory(category)">edit</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="columnsToShow"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columnsToShow"></mat-row>
+    </mat-table>
+  </div>
+
+  <button
+    mat-fab
+    aria-label="Nova tarefa"
+    class="add-fab"
+    matTooltip="Adicionar tarefa"
+    matTooltipPosition="left"
+    (click)="formView()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
