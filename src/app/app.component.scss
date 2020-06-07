@@ -21,7 +21,7 @@ mat-sidenav {
 
 mat-sidenav-content {
   div {
-    height: calc(100vh - 64px);
+    min-height: calc(100vh - 64px);
     background: rgb(231, 231, 231);
     background: linear-gradient(
       90deg,

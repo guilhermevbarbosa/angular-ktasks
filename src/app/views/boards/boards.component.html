@@ -12,7 +12,19 @@
       (cdkDropListDropped)="drop($event)"
     >
       <div class="cont-box" *ngFor="let item of todo" cdkDrag>
-        {{ item }}
+        <span>
+          {{ item }}
+        </span>
+
+        <div>
+          <button mat-icon-button color="primary" aria-label="Ver">
+            <mat-icon>visibility</mat-icon>
+          </button>
+
+          <button mat-icon-button color="warn" aria-label="Excluir">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -30,7 +42,19 @@
       (cdkDropListDropped)="drop($event)"
     >
       <div class="cont-box" *ngFor="let item of doing" cdkDrag>
-        {{ item }}
+        <span>
+          {{ item }}
+        </span>
+
+        <div>
+          <button mat-icon-button color="primary" aria-label="Ver">
+            <mat-icon>visibility</mat-icon>
+          </button>
+
+          <button mat-icon-button color="warn" aria-label="Excluir">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -48,7 +72,19 @@
       (cdkDropListDropped)="drop($event)"
     >
       <div class="cont-box" *ngFor="let item of done" cdkDrag>
-        {{ item }}
+        <span>
+          {{ item }}
+        </span>
+
+        <div>
+          <button mat-icon-button color="primary" aria-label="Ver">
+            <mat-icon>visibility</mat-icon>
+          </button>
+
+          <button mat-icon-button color="warn" aria-label="Excluir">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
   </div>

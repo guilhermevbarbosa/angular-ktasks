@@ -5,6 +5,8 @@
     white-space: nowrap;
     padding-bottom: 80px;
   }
+
+  padding-bottom: 100px;
 }
 
 .example-container {
@@ -20,8 +22,8 @@
   }
 
   @media (max-width: 750px) {
-    width: calc(45% - 20px);
-    margin: 6px 15px;
+    width: 65%;
+    margin: 6px 10px;
   }
 }
 
@@ -35,7 +37,7 @@
 }
 
 .cont-box {
-  padding: 20px 10px;
+  padding: 15px 8px;
   border-bottom: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
   display: flex;
@@ -46,6 +48,17 @@
   cursor: grab;
   background: white;
   font-size: 14px;
+
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 65%;
+
+    @media (max-width: 750px) {
+      width: 100px;
+    }
+  }
 }
 
 .cdk-drag-placeholder {
