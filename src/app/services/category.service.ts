@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Category } from '../models/category';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class CategoryService {
 
   constructor(private http: HttpClient) { }
 
-  apiEndpoint = 'b9f74e5f525b4d73b7b6d566a70de177';
+  apiEndpoint = environment.apiEndpoint;
   url = `https://crudcrud.com/api/${this.apiEndpoint}/category`;
 
   // Listagem de categorias existentes; Retorno do tipo array de categorias.
@@ -36,6 +37,6 @@ export class CategoryService {
 
   // Deleta categorias.
   deleteCategory(id: string): Observable<any> {
-    return this.http.delete(this.url + `${id}`);
+    return this.http.delete(this.url + `/${id}`);
   }
 }

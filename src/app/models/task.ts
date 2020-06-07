@@ -1,7 +1,7 @@
 import { Category } from './category';
 
 export class Task {
-  id: number;
+  _id: number;
   name: string;
   description: string;
   category: Category;

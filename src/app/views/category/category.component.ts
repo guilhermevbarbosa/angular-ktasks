@@ -22,7 +22,7 @@ export class CategoryComponent implements OnInit {
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    // this.list();
+    this.list();
   }
 
   formView() {
