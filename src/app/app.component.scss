@@ -13,6 +13,10 @@ mat-toolbar {
 
 mat-sidenav {
   width: 15%;
+
+  @media (max-width: 800px) {
+    width: 50%;
+  }
 }
 
 mat-sidenav-content {
