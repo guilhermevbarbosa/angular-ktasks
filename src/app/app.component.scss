@@ -18,5 +18,12 @@ mat-sidenav {
 mat-sidenav-content {
   div {
     height: calc(100vh - 64px);
+    background: rgb(231, 231, 231);
+    background: linear-gradient(
+      90deg,
+      rgba(231, 231, 231, 1) 0%,
+      rgba(245, 245, 245, 1) 35%,
+      rgba(232, 232, 232, 1) 100%
+    );
   }
 }
