@@ -6,7 +6,7 @@
       <mat-card-title>Nova tarefa</mat-card-title>
     </mat-card-header>
 
-    <mat-card-content>
+    <mat-card-content *ngIf="selectedTask">
       <p>
         <mat-form-field appearance="outline">
           <!-- Placeholder -->
@@ -14,17 +14,22 @@
           <!-- Placeholder -->
 
           <!-- Input -->
-          <input [(ngModel)]="taskName" matInput #name maxlength="100" />
+          <input
+            [(ngModel)]="selectedTask.name"
+            matInput
+            #name
+            maxlength="100"
+          />
           <!-- Input -->
 
           <!-- Limpa campo -->
           <button
             mat-button
-            *ngIf="taskName"
+            *ngIf="selectedTask.name"
             matSuffix
             mat-icon-button
             aria-label="Clear"
-            (click)="taskName = ''"
+            (click)="selectedTask.name = ''"
           >
             <mat-icon>close</mat-icon>
           </button>
@@ -44,7 +49,7 @@
 
           <!-- Input -->
           <input
-            [(ngModel)]="taskDescription"
+            [(ngModel)]="selectedTask.description"
             matInput
             #description
             maxlength="100"
@@ -54,11 +59,11 @@
           <!-- Limpa campo -->
           <button
             mat-button
-            *ngIf="taskDescription"
+            *ngIf="selectedTask.description"
             matSuffix
             mat-icon-button
             aria-label="Clear"
-            (click)="taskDescription = ''"
+            (click)="selectedTask.description = ''"
           >
             <mat-icon>close</mat-icon>
           </button>
@@ -69,17 +74,133 @@
           <!-- Contador de caracteres -->
         </mat-form-field>
       </p>
+
+      <p>
+        <mat-form-field>
+          <mat-label>Categoria</mat-label>
+
+          <mat-select [(ngModel)]="selectedTask.category">
+            <mat-option
+              ([ngModel])="(categories)"
+              *ngFor="let category of categories"
+              [value]="category._id"
+            >
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-stroked-button color="primary" mat-button>Salvar</button>
-      <button mat-stroked-button color="warn" mat-button (click)="formView()">
+      <button mat-stroked-button color="primary" (click)="save()" mat-button>
+        Salvar
+      </button>
+
+      <button
+        mat-stroked-button
+        color="warn"
+        mat-button
+        (click)="cleanSelectedTask()"
+      >
         Cancelar
       </button>
     </mat-card-actions>
   </mat-card>
 
-  <app-boards></app-boards>
+  <!-- Boards -->
+  <div class="boards">
+    <div class="example-container">
+      <h2>To do</h2>
+
+      <div
+        cdkDropList
+        id="todo"
+        #todoList="cdkDropList"
+        [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[doingList, doneList]"
+        class="list-tasks"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="cont-box" *ngFor="let item of todo" cdkDrag>
+          <span>
+            {{ item }}
+          </span>
+
+          <div>
+            <button mat-icon-button color="primary" aria-label="Ver">
+              <mat-icon>visibility</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" aria-label="Excluir">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Doing</h2>
+
+      <div
+        cdkDropList
+        id="doing"
+        #doingList="cdkDropList"
+        [cdkDropListData]="doing"
+        [cdkDropListConnectedTo]="[todoList, doneList]"
+        class="list-tasks"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="cont-box" *ngFor="let item of doing" cdkDrag>
+          <span>
+            {{ item }}
+          </span>
+
+          <div>
+            <button mat-icon-button color="primary" aria-label="Ver">
+              <mat-icon>visibility</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" aria-label="Excluir">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Done</h2>
+
+      <div
+        cdkDropList
+        id="done"
+        #doneList="cdkDropList"
+        [cdkDropListData]="done"
+        [cdkDropListConnectedTo]="[todoList, doingList]"
+        class="list-tasks"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="cont-box" *ngFor="let item of done" cdkDrag>
+          <span>
+            {{ item }}
+          </span>
+
+          <div>
+            <button mat-icon-button color="primary" aria-label="Ver">
+              <mat-icon>visibility</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" aria-label="Excluir">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Boards -->
 
   <button
     mat-fab

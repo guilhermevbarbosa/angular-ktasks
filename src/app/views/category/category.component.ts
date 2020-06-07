@@ -10,10 +10,6 @@ import { CategoryService } from 'src/app/services/category.service';
 })
 export class CategoryComponent implements OnInit {
 
-  // Form
-  categoryName: string;
-  // Form
-
   categories: Array<Category>;
   insert = false;
   selectedCategory: Category;
