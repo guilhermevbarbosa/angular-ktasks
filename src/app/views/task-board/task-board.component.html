@@ -1,6 +1,7 @@
 <div class="content pt20">
   <h1>Quadro de tarefas</h1>
 
+  <!-- Form -->
   <mat-card class="card-new card-none" id="formCard">
     <mat-card-header>
       <mat-card-title>Nova tarefa</mat-card-title>
@@ -107,6 +108,7 @@
       </button>
     </mat-card-actions>
   </mat-card>
+  <!-- Form -->
 
   <!-- Boards -->
   <div class="boards">
@@ -124,7 +126,7 @@
       >
         <div class="cont-box" *ngFor="let item of todo" cdkDrag>
           <span>
-            {{ item }}
+            {{ item.name }}
           </span>
 
           <div>
@@ -154,7 +156,7 @@
       >
         <div class="cont-box" *ngFor="let item of doing" cdkDrag>
           <span>
-            {{ item }}
+            {{ item.name }}
           </span>
 
           <div>
@@ -184,7 +186,7 @@
       >
         <div class="cont-box" *ngFor="let item of done" cdkDrag>
           <span>
-            {{ item }}
+            {{ item.name }}
           </span>
 
           <div>

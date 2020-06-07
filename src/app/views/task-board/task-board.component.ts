@@ -20,46 +20,38 @@ export class TaskBoardComponent implements OnInit {
   insert = false;
   selectedTask: Task;
 
-  todo = [
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep'
-  ];
-
-  doing = [
-    'Get2 up',
-    'Brush2 teeth',
-    'Take2 a shower',
-    'Check2 e-mail',
-    'Walk2 dog'
-  ];
-
-  done = [
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
-  ];
+  todo: Array<Task>;
+  doing: Array<Task>;
+  done: Array<Task>;
 
   constructor(private taskService: TaskService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.list();
-    this.listCategories();
+    // this.listCategories();
   }
 
   formView() {
-    document.getElementById('formCard').classList.toggle('card-none');
+    document.getElementById('formCard').classList.remove('card-none');
     this.newTask();
   }
 
   list() {
     this.taskService.listTasks().subscribe(
       allTasks => {
-        this.tasks = allTasks;
-        console.log(this.tasks);
+
+        this.todo = allTasks.filter((todoTasks) => {
+          return todoTasks.status === 0;
+        });
+
+        this.doing = allTasks.filter((doingTasks) => {
+          return doingTasks.status === 1;
+        });
+
+        this.done = allTasks.filter((doneTasks) => {
+          return doneTasks.status === 2;
+        });
+
       });
   }
 
@@ -103,7 +95,7 @@ export class TaskBoardComponent implements OnInit {
 
   cleanSelectedTask() {
     this.selectedTask = null;
-    document.getElementById('formCard').classList.toggle('card-none');
+    document.getElementById('formCard').classList.add('card-none');
   }
 
   newTask() {
