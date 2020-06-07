@@ -1,10 +1,28 @@
+.boards {
+  @media (max-width: 750px) {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-bottom: 80px;
+  }
+}
+
 .example-container {
-  width: 400px;
-  max-width: 100%;
+  width: calc(32% - 20px);
   display: inline-block;
   vertical-align: top;
-  margin: 6px 12px;
   margin-bottom: 40px;
+  margin: 6px 20px;
+
+  @media (min-width: 751px) and (max-width: 1500px) {
+    width: calc(32% - 10px);
+    margin: 6px 10px;
+  }
+
+  @media (max-width: 750px) {
+    width: calc(45% - 20px);
+    margin: 6px 15px;
+  }
 }
 
 .list-tasks {
