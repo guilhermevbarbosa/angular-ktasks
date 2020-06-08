@@ -77,7 +77,6 @@ export class TaskBoardComponent implements OnInit {
         this.list();
       });
     } else {
-      console.log(this.selectedTask.status)
       this.taskService.updateTask(this.selectedTask).subscribe(() => {
         alert('Atualizado com sucesso');
         this.cleanSelectedTask();

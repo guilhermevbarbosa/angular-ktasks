@@ -3,6 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { CategoryService } from 'src/app/services/category.service';
 
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -11,12 +17,15 @@ import { CategoryService } from 'src/app/services/category.service';
 
 export class CategoryComponent implements OnInit {
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
   categories: Array<Category>;
   insert = false;
   selectedCategory: Category;
   columnsToShow = ['name', 'acoes'];
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.list();
@@ -42,19 +51,24 @@ export class CategoryComponent implements OnInit {
   }
 
   save() {
-    if (this.insert) {
-      this.categoryService.addCategory(this.selectedCategory).subscribe(() => {
-        alert('Inserido com sucesso');
-        this.cleanSelectedCategory();
-        this.list();
-      });
+    if (this.selectCategory.name.length > 0 && this.selectedCategory.name !== undefined && this.selectedCategory.name !== '') {
+      if (this.insert) {
+        this.categoryService.addCategory(this.selectedCategory).subscribe(() => {
+          alert('Inserido com sucesso');
+          this.cleanSelectedCategory();
+          this.list();
+        });
+      } else {
+        this.categoryService.updateCategory(this.selectedCategory).subscribe(() => {
+          alert('Atualizado com sucesso');
+          this.cleanSelectedCategory();
+          this.list();
+        });
+      }
     } else {
-      this.categoryService.updateCategory(this.selectedCategory).subscribe(() => {
-        alert('Atualizado com sucesso');
-        this.cleanSelectedCategory();
-        this.list();
-      });
+      this.openSnackBar('Nome inválido, o mínimo é 1 caractere', 'Ok');
     }
+
   }
 
   selectCategory(category: Category) {
@@ -72,5 +86,13 @@ export class CategoryComponent implements OnInit {
   newCategory() {
     this.insert = true;
     this.selectedCategory = new Category();
+  }
+
+  openSnackBar(message: string, btnOk: string) {
+    this.snackBar.open(message, btnOk, {
+      duration: 3500,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
   }
 }
