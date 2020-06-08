@@ -21,7 +21,6 @@ import { MaterialComponentsModule } from './material-components/material-compone
 import { AboutComponent } from './views/about/about.component';
 import { TaskBoardComponent } from './views/task-board/task-board.component';
 import { CategoryComponent } from './views/category/category.component';
-import { CategoryTableComponent } from './views/category-table/category-table.component';
 // Pages
 
 @NgModule({
@@ -30,7 +29,6 @@ import { CategoryTableComponent } from './views/category-table/category-table.co
     AboutComponent,
     TaskBoardComponent,
     CategoryComponent,
-    CategoryTableComponent
   ],
   imports: [
     BrowserModule,

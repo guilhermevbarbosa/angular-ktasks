@@ -32,11 +32,7 @@ export class TaskBoardComponent implements OnInit {
     this.listCategories();
   }
 
-  formView() {
-    document.getElementById('formCard').classList.remove('card-none');
-    this.newTask();
-  }
-
+  // Listagem
   list() {
     this.taskService.listTasks().subscribe(
       allTasks => {
@@ -62,8 +58,9 @@ export class TaskBoardComponent implements OnInit {
         this.categories = allCategories;
       });
   }
+  // Listagem
 
-  remove(id: string) {
+  delete(id: string) {
     this.taskService.deleteTask(id).subscribe(() => {
       alert('Excluido com sucesso');
       this.list();
@@ -86,6 +83,11 @@ export class TaskBoardComponent implements OnInit {
         this.list();
       });
     }
+  }
+
+  formView() {
+    document.getElementById('formCard').classList.remove('card-none');
+    this.newTask();
   }
 
   selectTask(task: Task) {

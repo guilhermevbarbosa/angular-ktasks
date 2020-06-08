@@ -78,12 +78,12 @@
         </mat-header-cell>
 
         <mat-cell class="btns-actions" *matCellDef="let category">
-          <button mat-button color="warn">
-            <mat-icon (click)="remove(category._id)">delete</mat-icon>
-          </button>
-
           <button mat-button color="accent">
             <mat-icon (click)="selectCategory(category)">edit</mat-icon>
+          </button>
+
+          <button mat-button color="warn">
+            <mat-icon (click)="remove(category._id)">delete</mat-icon>
           </button>
         </mat-cell>
       </ng-container>

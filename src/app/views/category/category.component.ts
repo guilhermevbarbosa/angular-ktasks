@@ -8,6 +8,7 @@ import { CategoryService } from 'src/app/services/category.service';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
+
 export class CategoryComponent implements OnInit {
 
   categories: Array<Category>;
