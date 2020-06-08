@@ -4,7 +4,7 @@
   <!-- Form -->
   <mat-card class="card-new card-none" id="formCard">
     <mat-card-header>
-      <mat-card-title>Nova tarefa</mat-card-title>
+      <mat-card-title>Tarefa</mat-card-title>
     </mat-card-header>
 
     <mat-card-content *ngIf="selectedTask">
@@ -95,6 +95,7 @@
       </p>
     </mat-card-content>
 
+    <!-- Btns -->
     <mat-card-actions>
       <button mat-stroked-button color="primary" (click)="save()" mat-button>
         Salvar
@@ -109,12 +110,13 @@
         Cancelar
       </button>
     </mat-card-actions>
+    <!-- Btns -->
   </mat-card>
   <!-- Form -->
 
   <!-- Boards -->
   <div class="boards">
-    <div class="example-container">
+    <div class="board-container">
       <h2>To do</h2>
 
       <div
@@ -154,7 +156,7 @@
       </div>
     </div>
 
-    <div class="example-container">
+    <div class="board-container">
       <h2>Doing</h2>
 
       <div
@@ -199,7 +201,7 @@
       </div>
     </div>
 
-    <div class="example-container">
+    <div class="board-container">
       <h2>Done</h2>
 
       <div

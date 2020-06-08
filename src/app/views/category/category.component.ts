@@ -95,4 +95,5 @@ export class CategoryComponent implements OnInit {
       verticalPosition: this.verticalPosition,
     });
   }
+
 }

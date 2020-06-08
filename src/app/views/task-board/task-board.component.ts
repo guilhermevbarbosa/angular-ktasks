@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 import { Category } from 'src/app/models/category';
 import { Task } from 'src/app/models/task';
 import { TaskService } from 'src/app/services/task.service';
 import { CategoryService } from 'src/app/services/category.service';
-import { Container } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-task-board',
@@ -14,6 +18,9 @@ import { Container } from '@angular/compiler/src/i18n/i18n_ast';
   styleUrls: ['./task-board.component.scss']
 })
 export class TaskBoardComponent implements OnInit {
+
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   categories: Array<Category>;
   tasks: Array<Task>;
@@ -25,7 +32,9 @@ export class TaskBoardComponent implements OnInit {
   doing: Array<Task>;
   done: Array<Task>;
 
-  constructor(private taskService: TaskService, private categoryService: CategoryService) { }
+  errInForm = false;
+
+  constructor(private taskService: TaskService, private categoryService: CategoryService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.list();
@@ -68,21 +77,26 @@ export class TaskBoardComponent implements OnInit {
   }
 
   save() {
-    if (this.insert) {
-      this.selectedTask.status = 0;
+    this.validateForm();
 
-      this.taskService.addTask(this.selectedTask).subscribe(() => {
-        alert('Inserido com sucesso');
-        this.cleanSelectedTask();
-        this.list();
-      });
-    } else {
-      this.taskService.updateTask(this.selectedTask).subscribe(() => {
-        alert('Atualizado com sucesso');
-        this.cleanSelectedTask();
-        this.list();
-      });
+    if (!this.errInForm) {
+      if (this.insert) {
+        this.selectedTask.status = 0;
+
+        this.taskService.addTask(this.selectedTask).subscribe(() => {
+          alert('Inserido com sucesso');
+          this.cleanSelectedTask();
+          this.list();
+        });
+      } else {
+        this.taskService.updateTask(this.selectedTask).subscribe(() => {
+          alert('Atualizado com sucesso');
+          this.cleanSelectedTask();
+          this.list();
+        });
+      }
     }
+
   }
 
   formView() {
@@ -149,5 +163,28 @@ export class TaskBoardComponent implements OnInit {
     }
   }
   // BOARDS
+
+  openSnackBar(message: string, btnOk: string) {
+    this.snackBar.open(message, btnOk, {
+      duration: 3500,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
+
+  validateForm() {
+    if (this.selectedTask.name === undefined || this.selectedTask.name === '') {
+      this.openSnackBar('Nome inválido, o mínimo é 1 caractere', 'Ok');
+      this.errInForm = true;
+    } else if (this.selectedTask.description === undefined || this.selectedTask.description === '') {
+      this.openSnackBar('Descrição inválida, o mínimo é 1 caractere', 'Ok');
+      this.errInForm = true;
+    } else if (this.selectedTask.category === undefined || this.selectedTask.category === null) {
+      this.openSnackBar('Categoria não selecionada, selecione para continuar', 'Ok');
+      this.errInForm = true;
+    } else {
+      this.errInForm = false;
+    }
+  }
 
 }
