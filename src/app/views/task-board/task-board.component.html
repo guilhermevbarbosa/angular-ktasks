@@ -20,6 +20,7 @@
             matInput
             #name
             maxlength="100"
+            id="nameInput"
           />
           <!-- Input -->
 
@@ -54,6 +55,7 @@
             matInput
             #description
             maxlength="100"
+            id="descInput"
           />
           <!-- Input -->
 
@@ -80,7 +82,7 @@
         <mat-form-field>
           <mat-label>Categoria</mat-label>
 
-          <mat-select [(ngModel)]="selectedTask.category">
+          <mat-select id="categInput" [(ngModel)]="selectedTask.category">
             <mat-option
               ([ngModel])="(categories)"
               *ngFor="let category of categories"
@@ -130,7 +132,12 @@
           </span>
 
           <div>
-            <button mat-icon-button color="primary" aria-label="Ver">
+            <button
+              mat-icon-button
+              color="primary"
+              aria-label="Ver"
+              (click)="selectTask(item)"
+            >
               <mat-icon>visibility</mat-icon>
             </button>
 
@@ -170,7 +177,12 @@
           </span>
 
           <div>
-            <button mat-icon-button color="primary" aria-label="Ver">
+            <button
+              mat-icon-button
+              color="primary"
+              aria-label="Ver"
+              (click)="selectTask(item)"
+            >
               <mat-icon>visibility</mat-icon>
             </button>
 
@@ -205,7 +217,12 @@
           </span>
 
           <div>
-            <button mat-icon-button color="primary" aria-label="Ver">
+            <button
+              mat-icon-button
+              color="primary"
+              aria-label="Ver"
+              (click)="selectTask(item)"
+            >
               <mat-icon>visibility</mat-icon>
             </button>
 

@@ -77,6 +77,7 @@ export class TaskBoardComponent implements OnInit {
         this.list();
       });
     } else {
+      console.log(this.selectedTask.status)
       this.taskService.updateTask(this.selectedTask).subscribe(() => {
         alert('Atualizado com sucesso');
         this.cleanSelectedTask();
@@ -93,6 +94,7 @@ export class TaskBoardComponent implements OnInit {
   selectTask(task: Task) {
     this.insert = false;
     this.selectedTask = task;
+    document.getElementById('formCard').classList.remove('card-none');
   }
 
   cleanSelectedTask() {
