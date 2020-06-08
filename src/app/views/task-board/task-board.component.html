@@ -124,7 +124,7 @@
         class="list-tasks"
         (cdkDropListDropped)="drop($event)"
       >
-        <div class="cont-box" *ngFor="let item of todo" cdkDrag>
+        <div class="cont-box" *ngFor="let item of todo" [id]="item._id" cdkDrag>
           <span>
             {{ item.name }}
           </span>
@@ -154,7 +154,12 @@
         class="list-tasks"
         (cdkDropListDropped)="drop($event)"
       >
-        <div class="cont-box" *ngFor="let item of doing" cdkDrag>
+        <div
+          class="cont-box"
+          *ngFor="let item of doing"
+          [id]="item._id"
+          cdkDrag
+        >
           <span>
             {{ item.name }}
           </span>
@@ -184,7 +189,7 @@
         class="list-tasks"
         (cdkDropListDropped)="drop($event)"
       >
-        <div class="cont-box" *ngFor="let item of done" cdkDrag>
+        <div class="cont-box" *ngFor="let item of done" [id]="item._id" cdkDrag>
           <span>
             {{ item.name }}
           </span>

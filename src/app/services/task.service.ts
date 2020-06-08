@@ -35,4 +35,8 @@ export class TaskService {
   deleteTask(id: string): Observable<any> {
     return this.http.delete(this.url + `/${id}`);
   }
+
+  getOneTask(id: string): Observable<Task> {
+    return this.http.get<Task>(this.url + `/${id}`);
+  }
 }

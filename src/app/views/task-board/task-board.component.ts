@@ -28,7 +28,7 @@ export class TaskBoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.list();
-    // this.listCategories();
+    this.listCategories();
   }
 
   formView() {
@@ -59,7 +59,6 @@ export class TaskBoardComponent implements OnInit {
     this.categoryService.listCategories().subscribe(
       allCategories => {
         this.categories = allCategories;
-        console.log(this.categories);
       });
   }
 
@@ -106,16 +105,38 @@ export class TaskBoardComponent implements OnInit {
   // BOARDS
   drop(event: CdkDragDrop<string[]>) {
     const element = event.item.element.nativeElement;
+
     const prevList = event.previousContainer.element.nativeElement.id;
     const actualList = event.container.element.nativeElement.id;
+
+    const elementId = element.id;
+    let elementNewStatus: number;
 
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      transferArrayItem(event.previousContainer.data,
+      transferArrayItem(
+        event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+
+      if (actualList === 'todo') {
+        elementNewStatus = 0;
+      } else if (actualList === 'doing') {
+        elementNewStatus = 1;
+      } else {
+        elementNewStatus = 2;
+      }
+
+      this.taskService.getOneTask(elementId).subscribe(task => {
+        task.status = elementNewStatus;
+
+        this.taskService.updateTask(task).subscribe(() => {
+          alert('Alterado o status com sucesso!');
+        });
+      });
+
     }
   }
   // BOARDS
