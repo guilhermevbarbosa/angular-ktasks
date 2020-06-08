@@ -20,7 +20,6 @@ import { MaterialComponentsModule } from './material-components/material-compone
 // Pages
 import { AboutComponent } from './views/about/about.component';
 import { TaskBoardComponent } from './views/task-board/task-board.component';
-import { BoardsComponent } from './views/boards/boards.component';
 import { CategoryComponent } from './views/category/category.component';
 import { CategoryTableComponent } from './views/category-table/category-table.component';
 // Pages
@@ -30,7 +29,6 @@ import { CategoryTableComponent } from './views/category-table/category-table.co
     AppComponent,
     AboutComponent,
     TaskBoardComponent,
-    BoardsComponent,
     CategoryComponent,
     CategoryTableComponent
   ],

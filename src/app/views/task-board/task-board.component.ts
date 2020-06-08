@@ -6,6 +6,7 @@ import { Category } from 'src/app/models/category';
 import { Task } from 'src/app/models/task';
 import { TaskService } from 'src/app/services/task.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { Container } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-task-board',
@@ -105,22 +106,25 @@ export class TaskBoardComponent implements OnInit {
   // BOARDS
   drop(event: CdkDragDrop<string[]>) {
     const element = event.item.element.nativeElement;
-
-    const prevList = event.previousContainer.element.nativeElement.id;
     const actualList = event.container.element.nativeElement.id;
 
     const elementId = element.id;
     let elementNewStatus: number;
 
     if (event.previousContainer === event.container) {
+      // Quando a tarefa é movida no mesmo Container, só muda a posição dele
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+
+      // Quando a tarefa é movida de Container, faz a ação direcionada ao DB
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
-        event.currentIndex);
+        event.currentIndex
+      );
 
+      // Altera o valor de actualList de acordo com o quadro em que a tarefa é solta
       if (actualList === 'todo') {
         elementNewStatus = 0;
       } else if (actualList === 'doing') {
@@ -129,9 +133,11 @@ export class TaskBoardComponent implements OnInit {
         elementNewStatus = 2;
       }
 
+      // Faz a pesquisa e pega a tarefa pelo id
       this.taskService.getOneTask(elementId).subscribe(task => {
         task.status = elementNewStatus;
 
+        // Passa a tarefa para o update e altera o status
         this.taskService.updateTask(task).subscribe(() => {
           alert('Alterado o status com sucesso!');
         });

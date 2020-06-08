@@ -22,7 +22,7 @@ export class CategoryComponent implements OnInit {
   }
 
   formView() {
-    document.getElementById('formCard').classList.toggle('card-none');
+    document.getElementById('formCard').classList.remove('card-none');
     this.newCategory();
   }
 
@@ -59,11 +59,13 @@ export class CategoryComponent implements OnInit {
   selectCategory(category: Category) {
     this.insert = false;
     this.selectedCategory = category;
+
+    document.getElementById('formCard').classList.remove('card-none');
   }
 
   cleanSelectedCategory() {
     this.selectedCategory = null;
-    document.getElementById('formCard').classList.toggle('card-none');
+    document.getElementById('formCard').classList.add('card-none');
   }
 
   newCategory() {
