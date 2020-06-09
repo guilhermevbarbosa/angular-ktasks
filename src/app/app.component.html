@@ -1,35 +1,47 @@
-<mat-toolbar>
-  <mat-toolbar-row>
-    <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
+<div id="content-theme">
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
 
-    <h1>KTasks - Lista de tarefas</h1>
-  </mat-toolbar-row>
-</mat-toolbar>
+      <h1>KTasks - Lista de tarefas</h1>
+    </mat-toolbar-row>
+  </mat-toolbar>
 
-<mat-sidenav-container>
-  <mat-sidenav mode="over" #sidenav>
-    <mat-nav-list>
-      <a mat-list-item routerLink="/tasks" (click)="sidenav.toggle()"
-        >Tarefas</a
-      >
-    </mat-nav-list>
+  <mat-sidenav-container>
+    <mat-sidenav mode="over" #sidenav>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/tasks" (click)="sidenav.toggle()"
+          >Tarefas</a
+        >
+      </mat-nav-list>
 
-    <mat-nav-list>
-      <a mat-list-item routerLink="/category" (click)="sidenav.toggle()"
-        >Categorias</a
-      >
-    </mat-nav-list>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/category" (click)="sidenav.toggle()"
+          >Categorias</a
+        >
+      </mat-nav-list>
 
-    <mat-nav-list>
-      <a mat-list-item routerLink="/about" (click)="sidenav.toggle()">Sobre</a>
-    </mat-nav-list>
-  </mat-sidenav>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/about" (click)="sidenav.toggle()"
+          >Sobre</a
+        >
+      </mat-nav-list>
 
-  <mat-sidenav-content>
-    <div>
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+      <mat-nav-list>
+        <a mat-list-item>
+          <mat-slide-toggle [(ngModel)]="theme" (change)="test()">
+            Dark mode
+          </mat-slide-toggle>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

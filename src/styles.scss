@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 html,
 body {
   height: 100%;
@@ -10,4 +12,31 @@ body {
 
 .pt20 {
   padding-top: 20px;
+}
+
+.dark-theme {
+  mat-toolbar {
+    background: $dark !important;
+  }
+
+  mat-sidenav {
+    background: $dark !important;
+
+    .mat-nav-list .mat-list-item {
+      color: $white-k !important;
+    }
+  }
+
+  .add-fab {
+    background: $dark !important;
+  }
+
+  .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+    background: $dark !important;
+    color: #ffffff !important;
+  }
+
+  .mat-primary {
+    color: $dark !important;
+  }
 }

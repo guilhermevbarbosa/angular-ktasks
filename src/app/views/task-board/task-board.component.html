@@ -143,7 +143,11 @@
               >
                 <mat-chip-list>
                   <mat-chip color="primary" selected>
-                    #{{ category.name }}
+                    #{{
+                      category.name.length > 10
+                        ? (category.name | slice: 0:10) + "..."
+                        : category.name
+                    }}
                   </mat-chip>
                 </mat-chip-list>
               </span>
@@ -201,7 +205,11 @@
               >
                 <mat-chip-list>
                   <mat-chip color="primary" selected>
-                    #{{ category.name }}
+                    #{{
+                      category.name.length > 10
+                        ? (category.name | slice: 0:10) + "..."
+                        : category.name
+                    }}
                   </mat-chip>
                 </mat-chip-list>
               </span>
@@ -254,7 +262,11 @@
               >
                 <mat-chip-list>
                   <mat-chip color="primary" selected>
-                    #{{ category.name }}
+                    #{{
+                      category.name.length > 10
+                        ? (category.name | slice: 0:10) + "..."
+                        : category.name
+                    }}
                   </mat-chip>
                 </mat-chip-list>
               </span>

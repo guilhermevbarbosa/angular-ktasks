@@ -1,2 +1,10 @@
 $gradient: linear-gradient(to left, #593fa8, #584099);
 $white-k: #fff;
+$dark: #000000;
+$bg-color: linear-gradient(
+  90deg,
+  rgba(231, 231, 231, 1) 0%,
+  rgba(245, 245, 245, 1) 35%,
+  rgba(232, 232, 232, 1) 100%
+);
+$bg-color-old: rgb(231, 231, 231);

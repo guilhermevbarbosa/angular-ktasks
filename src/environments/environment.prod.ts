@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiEndpoint: 'a377f50bd94a4d8b8c8d9da8d30c7b5c',
+  apiEndpoint: '3e8a3de95d154c1a8e177e71330c1d03',
 };

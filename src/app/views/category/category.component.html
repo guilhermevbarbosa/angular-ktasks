@@ -19,7 +19,7 @@
             [(ngModel)]="selectedCategory.name"
             matInput
             #name
-            maxlength="100"
+            maxlength="20"
             required
             minlength="1"
           />
@@ -39,7 +39,7 @@
           <!-- Limpa campo -->
 
           <!-- Contador de caracteres -->
-          <mat-hint align="end">{{ name.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ name.value.length }} / 20</mat-hint>
           <!-- Contador de caracteres -->
         </mat-form-field>
       </p>
