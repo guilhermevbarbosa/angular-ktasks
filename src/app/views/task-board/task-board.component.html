@@ -134,7 +134,20 @@
       >
         <div class="cont-box" *ngFor="let item of todo" [id]="item._id" cdkDrag>
           <span>
-            {{ item.name }}
+            {{ item.name }} <br />
+
+            <div *ngFor="let category of categories">
+              <span
+                class="categoria-span"
+                *ngIf="category._id == item.category"
+              >
+                <mat-chip-list>
+                  <mat-chip color="primary" selected>
+                    #{{ category.name }}
+                  </mat-chip>
+                </mat-chip-list>
+              </span>
+            </div>
           </span>
 
           <div>
@@ -180,6 +193,19 @@
         >
           <span>
             {{ item.name }}
+
+            <div *ngFor="let category of categories">
+              <span
+                class="categoria-span"
+                *ngIf="category._id == item.category"
+              >
+                <mat-chip-list>
+                  <mat-chip color="primary" selected>
+                    #{{ category.name }}
+                  </mat-chip>
+                </mat-chip-list>
+              </span>
+            </div>
           </span>
 
           <div>
@@ -220,6 +246,19 @@
         <div class="cont-box" *ngFor="let item of done" [id]="item._id" cdkDrag>
           <span>
             {{ item.name }}
+
+            <div *ngFor="let category of categories">
+              <span
+                class="categoria-span"
+                *ngIf="category._id == item.category"
+              >
+                <mat-chip-list>
+                  <mat-chip color="primary" selected>
+                    #{{ category.name }}
+                  </mat-chip>
+                </mat-chip-list>
+              </span>
+            </div>
           </span>
 
           <div>
