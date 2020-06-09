@@ -34,6 +34,8 @@ export class TaskBoardComponent implements OnInit {
 
   errInForm = false;
 
+  catString: string;
+
   constructor(private taskService: TaskService, private categoryService: CategoryService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {

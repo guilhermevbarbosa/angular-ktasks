@@ -139,7 +139,7 @@
             <div *ngFor="let category of categories">
               <span
                 class="categoria-span"
-                *ngIf="category._id == item.category"
+                *ngIf="category._id === item.category"
               >
                 <mat-chip-list>
                   <mat-chip color="primary" selected>
