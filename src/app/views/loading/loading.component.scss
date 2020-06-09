@@ -1,0 +1,19 @@
+.bg-backdrop {
+  min-height: 100vh;
+  position: fixed;
+  background: #00000063;
+  z-index: 5;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+mat-spinner {
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  margin: 0 auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+}

@@ -33,8 +33,7 @@ export class TaskBoardComponent implements OnInit {
   done: Array<Task>;
 
   errInForm = false;
-
-  catString: string;
+  loading = false;
 
   constructor(private taskService: TaskService, private categoryService: CategoryService, private snackBar: MatSnackBar) { }
 
@@ -45,6 +44,8 @@ export class TaskBoardComponent implements OnInit {
 
   // Listagem
   list() {
+    this.loading = true;
+
     this.taskService.listTasks().subscribe(
       allTasks => {
 
@@ -60,18 +61,25 @@ export class TaskBoardComponent implements OnInit {
           return doneTasks.status === 2;
         });
 
+        this.loading = false;
       });
   }
 
   listCategories() {
+    this.loading = true;
+
     this.categoryService.listCategories().subscribe(
       allCategories => {
         this.categories = allCategories;
+
+        this.loading = false;
       });
   }
   // Listagem
 
   delete(id: string) {
+    this.loading = true;
+
     this.taskService.deleteTask(id).subscribe(() => {
       alert('Excluido com sucesso');
       this.list();
@@ -79,6 +87,7 @@ export class TaskBoardComponent implements OnInit {
   }
 
   save() {
+    this.loading = true;
     this.validateForm();
 
     if (!this.errInForm) {
@@ -134,6 +143,7 @@ export class TaskBoardComponent implements OnInit {
       // Quando a tarefa é movida no mesmo Container, só muda a posição dele
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+      this.loading = true;
 
       // Quando a tarefa é movida de Container, faz a ação direcionada ao DB
       transferArrayItem(
@@ -159,6 +169,7 @@ export class TaskBoardComponent implements OnInit {
         // Passa a tarefa para o update e altera o status
         this.taskService.updateTask(task).subscribe(() => {
           alert('Alterado o status com sucesso!');
+          this.loading = false;
         });
       });
 
@@ -178,15 +189,19 @@ export class TaskBoardComponent implements OnInit {
     if (this.selectedTask.name === undefined || this.selectedTask.name === '') {
       this.openSnackBar('Nome inválido, o mínimo é 1 caractere', 'Ok');
       this.errInForm = true;
+      this.loading = false;
     } else if (this.selectedTask.description === undefined || this.selectedTask.description === '') {
       this.openSnackBar('Descrição inválida, o mínimo é 1 caractere', 'Ok');
       this.errInForm = true;
+      this.loading = false;
     } else if (this.selectedTask.category === undefined || this.selectedTask.category === null) {
       this.openSnackBar('Categoria não selecionada, selecione para continuar', 'Ok');
       this.errInForm = true;
+      this.loading = false;
     } else {
       this.errInForm = false;
     }
+
   }
 
 }
