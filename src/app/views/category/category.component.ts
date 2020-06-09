@@ -24,6 +24,7 @@ export class CategoryComponent implements OnInit {
   insert = false;
   selectedCategory: Category;
   columnsToShow = ['name', 'acoes'];
+  loading = false;
 
   constructor(private categoryService: CategoryService, private snackBar: MatSnackBar) { }
 
@@ -37,13 +38,19 @@ export class CategoryComponent implements OnInit {
   }
 
   list() {
+    this.loading = true;
+
     this.categoryService.listCategories().subscribe(
       allCategory => {
         this.categories = allCategory;
+
+        this.loading = false;
       });
   }
 
   remove(id: string) {
+    this.loading = true;
+
     this.categoryService.deleteCategory(id).subscribe(() => {
       alert('Excluido com sucesso');
       this.list();
@@ -51,6 +58,8 @@ export class CategoryComponent implements OnInit {
   }
 
   save() {
+    this.loading = true;
+
     if (this.selectCategory.name.length > 0 && this.selectedCategory.name !== undefined && this.selectedCategory.name !== '') {
       if (this.insert) {
         this.categoryService.addCategory(this.selectedCategory).subscribe(() => {
@@ -67,6 +76,8 @@ export class CategoryComponent implements OnInit {
       }
     } else {
       this.openSnackBar('Nome inválido, o mínimo é 1 caractere', 'Ok');
+
+      this.loading = false;
     }
 
   }
