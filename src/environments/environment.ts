@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiEndpoint: 'f6db63f668d84b0aa0e3498700f078f4',
+  apiEndpoint: 'a377f50bd94a4d8b8c8d9da8d30c7b5c',
 };
 

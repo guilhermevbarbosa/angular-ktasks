@@ -92,6 +92,10 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+
+        <span class="err-cat" *ngIf="categories.length === 0">
+          Cadastre uma categoria para conseguir cadastrar uma nova tarefa
+        </span>
       </p>
     </mat-card-content>
 
